@@ -1,21 +1,12 @@
 name: Setup Node.js with pnpm
-description: Checkout, install pnpm, set up Node.js with cache, run safe-chain check, and install dependencies.
-
-inputs:
-  fetch-depth:
-    description: Number of commits to fetch (0 = full history)
-    required: false
-    default: '0'
+description: >
+  Install pnpm, set up Node.js with cache, run Aikido safe-chain check,
+  and install dependencies. Requires actions/checkout to have already run
+  in the calling job.
 
 runs:
   using: composite
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      with:
-        fetch-depth: ${{ inputs.fetch-depth }}
-        persist-credentials: false
-
     - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
       name: Install pnpm
       with:
